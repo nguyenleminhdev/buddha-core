@@ -1,6 +1,6 @@
 {
   "name": "buddha-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nguyenleminhdev/bbh-chatbox-widget-sdk.git"
+    "url": "git+https://github.com/nguyenleminhdev/buddha-core.git"
   },
   "author": "Andrew Nguyen <nguyenleminhdev@gmail.com>",
   "license": "ISC",
