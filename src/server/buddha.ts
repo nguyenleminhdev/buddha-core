@@ -6,7 +6,7 @@ import type { Cb } from '../interface'
 
 /**hiển thị hình ảnh của phật tổ để phù phép cho hệ thống */
 export const loadBuddha = (proceed: Cb) => readFile(
-    `${__dirname}/../../buddha.txt`,
+    `${__dirname}/../buddha.txt`,
     'utf-8',
     (e, buddha) => {
         if (e) return proceed(e)

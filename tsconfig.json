@@ -15,6 +15,6 @@
     "skipLibCheck": true,
     "removeComments": false
   },
-  "include": ["src"],
+  "include": ["src", "buddha.txt"],
   "exclude": ["node_modules", "test"]
 }
