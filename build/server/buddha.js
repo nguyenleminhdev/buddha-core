@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loadBuddha = void 0;
 const fs_1 = require("fs");
-const { name, version } = require(`${process.cwd()}/package.json`);
+const { name, version } = require(`../../package.json`);
 const chalk_1 = require("chalk");
 /**hiển thị hình ảnh của phật tổ để phù phép cho hệ thống */
 const loadBuddha = (proceed) => (0, fs_1.readFile)(`${__dirname}/../buddha.txt`, 'utf-8', (e, buddha) => {

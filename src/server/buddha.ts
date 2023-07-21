@@ -1,5 +1,5 @@
 import { readFile } from 'fs'
-const { name, version } = require(`${process.cwd()}/package.json`)
+const { name, version } = require(`../../package.json`)
 import { yellow, blue, green } from 'chalk'
 
 import type { Cb } from '../interface'

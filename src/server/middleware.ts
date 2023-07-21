@@ -3,7 +3,6 @@ import cors from 'cors'
 import morgan from 'morgan'
 import { green } from 'chalk'
 import { size } from 'lodash'
-import express from 'express'
 
 import type { Express } from 'express'
 import type { Cb } from '../interface'
