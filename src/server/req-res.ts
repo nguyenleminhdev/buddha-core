@@ -29,11 +29,11 @@ export const loadCustomRequestResponse = (proceed: Cb) => {
 
     customRequestResponse(
         'request',
-        `${process.cwd()}/src/helper/request`
+        `${$project_dirname}/helper/request`
     )
     customRequestResponse(
         'response',
-        `${process.cwd()}/src/helper/response`
+        `${$project_dirname}/helper/response`
     )
 
     proceed()

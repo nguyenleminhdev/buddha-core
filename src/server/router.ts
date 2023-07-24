@@ -79,7 +79,7 @@ const get_all_file_name_folder = (root_path: string, proceed: Cb) => {
 /**nạp các middleware vào router */
 const load_middleware = (ROUTER: Router, proceed: Cb) => {
     /**đường dẫn đến nơi chứa middleware */
-    const PATH = `${process.cwd()}/src/api/middleware`
+    const PATH = `${$project_dirname}/api/middleware`
 
     const DATA: {
         config_middleware: MiddlewareConfig,
@@ -112,7 +112,7 @@ const load_middleware = (ROUTER: Router, proceed: Cb) => {
         }),
         // * đọc cấu hình
         (cb: CbError) => {
-            import(`${process.cwd()}/src/config/middleware`).then(r => {
+            import(`${$project_dirname}/config/middleware`).then(r => {
                 DATA.config_middleware = r?.default
 
                 cb()
@@ -210,7 +210,7 @@ const load_controller = (ROUTER: Router, proceed: Cb) => {
     waterfall([
         // * đọc tên của toàn bộ các file trong controller
         (cb: CbError) => get_all_file_name_folder(
-            `${process.cwd()}/src/api/controller`,
+            `${$project_dirname}/api/controller`,
             (e, r) => {
                 if (e) return cb(e)
 

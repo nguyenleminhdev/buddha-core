@@ -8,7 +8,7 @@ export async function loadCurrentEnvConfig(proceed: Cb) {
     const NODE_ENV = process.env.NODE_ENV || 'development'
 
     /**dữ liệu của môi trường hiện tại */
-    const ENV: { default: any } = await import(`${process.cwd()}/src/config/env/${NODE_ENV}`)
+    const ENV: { default: any } = await import(`${$project_dirname}/config/env/${NODE_ENV}`)
 
     // nạp dữ liệu môi trường vào biến toàn cục
     globalThis.$env = ENV.default

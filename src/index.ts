@@ -14,8 +14,14 @@ export * from './database'
 
 import type { CbError } from './interface'
 
-/**khởi chạy hệ thống */
-export const init = () => {
+/**
+ * khởi chạy hệ thống
+ * @param project_dirname đường dẫn của thư mục dự án
+ */
+export const init = (project_dirname: string) => {
+    // nạp đường dẫn server
+    globalThis.$project_dirname = project_dirname
+
     // khởi tạo đối tượng của server
     const APP = express()
 

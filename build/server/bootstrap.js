@@ -58,7 +58,7 @@ exports.check_node_valid = check_node_valid;
 /**nạp các code xử lý khi hệ thống khởi động */
 const loadBootstrap = (proceed) => {
     /**đường dẫn đến code */
-    const PATH = `${process.cwd()}/src/helper/bootstrap`;
+    const PATH = `${$project_dirname}/helper/bootstrap`;
     Promise
         .all((0, fs_1.readdirSync)(PATH).map((r) => __awaiter(void 0, void 0, void 0, function* () {
         var _a;

@@ -18,7 +18,7 @@ const t: T = (alias: string, language = 'vn') => {
 /**nạp các phương thức của i18n */
 export async function loadLanguage(proceed: Cb) {
     /**đường dẫn đến thư mục chứa source i18n */
-    const LANG_PATH = `${process.cwd()}/src/lang`
+    const LANG_PATH = `${$project_dirname}/lang`
 
     Promise
         .all(

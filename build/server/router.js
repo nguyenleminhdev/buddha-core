@@ -77,7 +77,7 @@ const get_all_file_name_folder = (root_path, proceed) => {
 /**nạp các middleware vào router */
 const load_middleware = (ROUTER, proceed) => {
     /**đường dẫn đến nơi chứa middleware */
-    const PATH = `${process.cwd()}/src/api/middleware`;
+    const PATH = `${$project_dirname}/api/middleware`;
     const DATA = {
         config_middleware: {},
         list_middleware: {}
@@ -97,7 +97,7 @@ const load_middleware = (ROUTER, proceed) => {
         // * đọc cấu hình
         (cb) => {
             var _a;
-            (_a = `${process.cwd()}/src/config/middleware`, Promise.resolve().then(() => __importStar(require(_a)))).then(r => {
+            (_a = `${$project_dirname}/config/middleware`, Promise.resolve().then(() => __importStar(require(_a)))).then(r => {
                 DATA.config_middleware = r === null || r === void 0 ? void 0 : r.default;
                 cb();
             });
@@ -162,7 +162,7 @@ const load_controller = (ROUTER, proceed) => {
     };
     (0, async_1.waterfall)([
         // * đọc tên của toàn bộ các file trong controller
-        (cb) => get_all_file_name_folder(`${process.cwd()}/src/api/controller`, (e, r) => {
+        (cb) => get_all_file_name_folder(`${$project_dirname}/api/controller`, (e, r) => {
             if (e)
                 return cb(e);
             DATA.path_list = r;

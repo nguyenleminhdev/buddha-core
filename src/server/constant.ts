@@ -7,7 +7,7 @@ import type { Cb } from '../interface'
 /**nạp các cài đặt dùng chung cho tất cả các môi trường */
 export async function loadConstant(proceed: Cb) {
     /**đường dẫn của thư mục cài đặt */
-    const CONSTANT_PATH = `${process.cwd()}/src/config/constant`
+    const CONSTANT_PATH = `${$project_dirname}/config/constant`
 
     Promise
         .all(

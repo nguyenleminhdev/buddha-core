@@ -23,6 +23,8 @@ declare global {
             [index: string]: (output?: any, code?: number, payload?: any) => void
         }
     }
+    /**__dirname của thư mục dự án (không phải của thư viện) */
+    var $project_dirname: string
     /**log dữ liệu kết nối của hệ thống */
     var $logging: LogItemInfo[]
     /**giá trị các cài đặt của môi trường hiện tại */

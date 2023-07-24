@@ -49,7 +49,7 @@ const t = (alias, language = 'vn') => {
 function loadLanguage(proceed) {
     return __awaiter(this, void 0, void 0, function* () {
         /**đường dẫn đến thư mục chứa source i18n */
-        const LANG_PATH = `${process.cwd()}/src/lang`;
+        const LANG_PATH = `${$project_dirname}/lang`;
         Promise
             .all(
         // nạp toàn bộ các file trong thư mục

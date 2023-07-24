@@ -25,7 +25,7 @@ export const check_node_valid = (
 /**nạp các code xử lý khi hệ thống khởi động */
 export const loadBootstrap = (proceed: Cb) => {
     /**đường dẫn đến code */
-    const PATH = `${process.cwd()}/src/helper/bootstrap`
+    const PATH = `${$project_dirname}/helper/bootstrap`
 
     Promise
         .all(readdirSync(PATH).map(async r => {

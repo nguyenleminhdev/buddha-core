@@ -40,7 +40,7 @@ const chalk_1 = require("chalk");
 function loadConstant(proceed) {
     return __awaiter(this, void 0, void 0, function* () {
         /**đường dẫn của thư mục cài đặt */
-        const CONSTANT_PATH = `${process.cwd()}/src/config/constant`;
+        const CONSTANT_PATH = `${$project_dirname}/config/constant`;
         Promise
             .all(
         // nạp tất cả các tập tin trong thư mục

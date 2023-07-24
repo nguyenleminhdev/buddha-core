@@ -56,8 +56,8 @@ const customRequestResponse = (type, path) => {
 /**nạp các phương thức custom vào express */
 const loadCustomRequestResponse = (proceed) => {
     console.log((0, chalk_1.green) `✔ Custom request, response loading successfully`);
-    customRequestResponse('request', `${process.cwd()}/src/helper/request`);
-    customRequestResponse('response', `${process.cwd()}/src/helper/response`);
+    customRequestResponse('request', `${$project_dirname}/helper/request`);
+    customRequestResponse('response', `${$project_dirname}/helper/response`);
     proceed();
 };
 exports.loadCustomRequestResponse = loadCustomRequestResponse;

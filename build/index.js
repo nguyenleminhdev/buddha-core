@@ -25,8 +25,13 @@ __exportStar(require("./interface"), exports);
 __exportStar(require("./service"), exports);
 __exportStar(require("./server"), exports);
 __exportStar(require("./database"), exports);
-/**khởi chạy hệ thống */
-const init = () => {
+/**
+ * khởi chạy hệ thống
+ * @param project_dirname đường dẫn của thư mục dự án
+ */
+const init = (project_dirname) => {
+    // nạp đường dẫn server
+    globalThis.$project_dirname = project_dirname;
     // khởi tạo đối tượng của server
     const APP = (0, express_1.default)();
     // xoá toàn bộ log trước đó
