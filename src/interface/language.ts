@@ -14,7 +14,7 @@ export interface I18nSource<Item> {
 }
 
 /**khai báo cho i81n */
-export interface Lang<Item> {
+export interface Lang<Item = any> {
     /**nguồn của i18n */
     source: I18nSource<Item>
     /**phương thức trả về dữ liệu */

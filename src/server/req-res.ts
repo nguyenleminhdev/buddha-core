@@ -2,6 +2,7 @@ import { readdirSync } from 'fs'
 import { join } from 'path'
 import express from 'express'
 import { green, blue } from 'chalk'
+import { parse } from 'path'
 
 import type { Cb } from '../interface'
 
@@ -14,10 +15,10 @@ const customRequestResponse = (
     readdirSync(path)
         .forEach(async file_path => {
             /**dữ liệu của file */
-            const module = await import(join(path, file_path))
+            const module: { default: Function } = await import(join(path, file_path))
 
             // nạp các phương thức vào express
-            express[type][module.default.name] = module.default
+            express[type][parse(file_path).name] = module.default
 
             console.log(blue`\t⇨ ${type}: ${module.default.name}()`)
         })

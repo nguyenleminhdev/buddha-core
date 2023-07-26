@@ -2,17 +2,19 @@
  * - khai báo kiểu dữ liệu cho các biến toàn cục
  * - chỉnh sửa kiểu dữ liệu của thư viên
  */
-import type { LogItemInfo, Database } from './interface';
+import type { LogItemInfo, Database, Lang } from './interface';
 import type { Queue } from './service';
 declare global {
     namespace Express {
         interface Request {
-            [index: string]: (() => object) | string;
+            /**custom phương thức cho request */
+            [index: string | number]: any;
             /**giá trị của i18n được api truyền lên */
             locale: string;
         }
         interface Response {
-            [index: string]: (output?: any, code?: number, payload?: any) => void;
+            /**custom phương thức cho response */
+            [index: string | number]: any;
         }
     }
     /**__dirname của thư mục dự án (không phải của thư viện) */
@@ -24,7 +26,7 @@ declare global {
     /**giá trị các cài đặt các môi trường dùng chung */
     var $constant: any;
     /**các cài đặt của i18n */
-    var $lang: any;
+    var $lang: Lang;
     /**các đối tượng dùng để kết nối đến CSDL */
     var $database: Database;
     /**các phương thức của hàng đợi */

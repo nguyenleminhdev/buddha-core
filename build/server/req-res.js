@@ -40,6 +40,7 @@ const fs_1 = require("fs");
 const path_1 = require("path");
 const express_1 = __importDefault(require("express"));
 const chalk_1 = require("chalk");
+const path_2 = require("path");
 /**nạp các phương thức tuỳ biến cho req, res của express */
 const customRequestResponse = (type, path) => {
     // đọc các phương thức
@@ -49,7 +50,7 @@ const customRequestResponse = (type, path) => {
         /**dữ liệu của file */
         const module = yield (_a = (0, path_1.join)(path, file_path), Promise.resolve().then(() => __importStar(require(_a))));
         // nạp các phương thức vào express
-        express_1.default[type][module.default.name] = module.default;
+        express_1.default[type][(0, path_2.parse)(file_path).name] = module.default;
         console.log((0, chalk_1.blue) `\t⇨ ${type}: ${module.default.name}()`);
     }));
 };
