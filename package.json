@@ -1,6 +1,6 @@
 {
   "name": "buddha-core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Core logic of buddha.ts",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -42,7 +42,6 @@
   },
   "dependencies": {
     "async": "^3.2.4",
-    "buddha-core": "file:",
     "bull": "^4.10.4",
     "chalk": "^4.1.2",
     "cors": "^2.8.5",

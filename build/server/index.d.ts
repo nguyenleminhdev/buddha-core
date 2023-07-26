@@ -12,3 +12,4 @@ export * from './server';
 export * from './static';
 export * from './socket';
 export * from './database';
+export * from './init';

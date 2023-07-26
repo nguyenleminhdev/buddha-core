@@ -28,3 +28,4 @@ __exportStar(require("./server"), exports);
 __exportStar(require("./static"), exports);
 __exportStar(require("./socket"), exports);
 __exportStar(require("./database"), exports);
+__exportStar(require("./init"), exports);

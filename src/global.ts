@@ -6,8 +6,6 @@
 import type { LogItemInfo, Database } from './interface'
 import type { Queue } from './service'
 
-import { } from './interface'
-
 declare global {
     // chỉnh sửa kiểu dữ liệu của thư viện express
     namespace Express {
