@@ -48,10 +48,12 @@ const customRequestResponse = (type, path) => {
         .forEach((file_path) => __awaiter(void 0, void 0, void 0, function* () {
         var _a;
         /**dữ liệu của file */
-        const module = yield (_a = (0, path_1.join)(path, file_path), Promise.resolve().then(() => __importStar(require(_a))));
+        const MODULE = yield (_a = (0, path_1.join)(path, file_path), Promise.resolve().then(() => __importStar(require(_a))));
+        /**tên của phương thức */
+        const METHOD_NAME = (0, path_2.parse)(file_path).name;
         // nạp các phương thức vào express
-        express_1.default[type][(0, path_2.parse)(file_path).name] = module.default;
-        console.log((0, chalk_1.blue) `\t⇨ ${type}: ${module.default.name}()`);
+        express_1.default[type][METHOD_NAME] = MODULE.default;
+        console.log((0, chalk_1.blue) `\t⇨ ${type}: ${METHOD_NAME}()`);
     }));
 };
 /**nạp các phương thức custom vào express */

@@ -15,12 +15,17 @@ const customRequestResponse = (
     readdirSync(path)
         .forEach(async file_path => {
             /**dữ liệu của file */
-            const module: { default: Function } = await import(join(path, file_path))
+            const MODULE: { 
+                default: Function 
+            } = await import(join(path, file_path))
+
+            /**tên của phương thức */
+            const METHOD_NAME = parse(file_path).name
 
             // nạp các phương thức vào express
-            express[type][parse(file_path).name] = module.default
+            express[type][METHOD_NAME] = MODULE.default
 
-            console.log(blue`\t⇨ ${type}: ${module.default.name}()`)
+            console.log(blue`\t⇨ ${type}: ${METHOD_NAME}()`)
         })
 }
 
