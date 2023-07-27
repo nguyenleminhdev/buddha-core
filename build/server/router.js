@@ -49,7 +49,7 @@ const get_all_file_name_folder = (root_path, proceed) => {
     /**đệ quy đọc toàn bộ tên file của folder */
     const recursive = (path, proceed) => (0, async_1.eachOfLimit)(
     // đọc tên file của folder hiện tại
-    (0, fs_1.readdirSync)(path), 1, (name, i, next) => {
+    (0, fs_1.readdirSync)(path), 20, (name, i, next) => {
         /**đường dẫn đến file hiện tại */
         const CURRENT_PATH = `${path}/${name}`;
         // lấy thông tin của tập tin này
@@ -105,7 +105,7 @@ const load_middleware = (ROUTER, proceed) => {
         // * thêm middleware vào router
         (cb) => {
             console.log((0, chalk_1.green) `✔ Middleware loading successfully`);
-            (0, async_1.eachOfLimit)(DATA.config_middleware, 1, (v, k, next) => {
+            (0, async_1.eachOfLimit)(DATA.config_middleware, 20, (v, k, next) => {
                 /**code của middleware */
                 const LIST_HANDLE = v.map(n => (0, lodash_1.get)(DATA.list_middleware, [n, 'source', 'default'])).filter(n => n);
                 if (!LIST_HANDLE.length)
@@ -123,7 +123,7 @@ const handle_controller = (path, source, proceed) => {
     const DATA = {
         controller_list: []
     };
-    (0, async_1.eachOfLimit)(source, 1, (controller, name, next) => {
+    (0, async_1.eachOfLimit)(source, 20, (controller, name, next) => {
         DATA.controller_list.push({
             path: (0, path_1.join)(path, name.replace(/index/g, '')),
             controller
@@ -187,7 +187,7 @@ const load_controller = (ROUTER, proceed) => {
         (cb) => {
             console.log((0, chalk_1.green) `✔ Api loading successfully`);
             // * xử lý source
-            (0, async_1.eachOfLimit)(DATA.source_list, 1, (source_data, i, next) => handle_controller_list(source_data, (e, r) => {
+            (0, async_1.eachOfLimit)(DATA.source_list, 20, (source_data, i, next) => handle_controller_list(source_data, (e, r) => {
                 if (e)
                     return next(e);
                 DATA.controller_list = [...DATA.controller_list, ...r];
@@ -196,7 +196,7 @@ const load_controller = (ROUTER, proceed) => {
             }), cb);
         },
         // * nạp code vào router
-        (cb) => (0, async_1.eachOfLimit)(DATA.controller_list, 1, (n, i, next) => {
+        (cb) => (0, async_1.eachOfLimit)(DATA.controller_list, 20, (n, i, next) => {
             if ((0, lodash_1.isArray)(n.controller))
                 ROUTER.all(n.path, ...n.controller);
             else

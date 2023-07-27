@@ -44,7 +44,7 @@ const get_all_file_name_folder = (root_path: string, proceed: Cb) => {
     const recursive = (path: string, proceed: Cb) => eachOfLimit(
         // đọc tên file của folder hiện tại
         readdirSync(path),
-        1,
+        20,
         (name, i, next) => {
             /**đường dẫn đến file hiện tại */
             const CURRENT_PATH = `${path}/${name}`
@@ -122,7 +122,7 @@ const load_middleware = (ROUTER: Router, proceed: Cb) => {
         (cb: CbError) => {
             console.log(green`✔ Middleware loading successfully`)
 
-            eachOfLimit(DATA.config_middleware, 1, (v, k, next) => {
+            eachOfLimit(DATA.config_middleware, 20, (v, k, next) => {
                 /**code của middleware */
                 const LIST_HANDLE = v.map(
                     n => get(DATA.list_middleware, [n, 'source', 'default'])
@@ -150,7 +150,7 @@ const handle_controller = (path: string, source: SourceItem, proceed: Cb) => {
     }
     eachOfLimit(
         source,
-        1,
+        20,
         (controller, name, next) => {
             DATA.controller_list.push({
                 path: join(path, (name as string).replace(/index/g, '')),
@@ -241,7 +241,7 @@ const load_controller = (ROUTER: Router, proceed: Cb) => {
             // * xử lý source
             eachOfLimit(
                 DATA.source_list,
-                1,
+                20,
                 (source_data, i, next) => handle_controller_list(
                     source_data,
                     (e, r: ControllerData[]) => {
@@ -258,7 +258,7 @@ const load_controller = (ROUTER: Router, proceed: Cb) => {
             )
         },
         // * nạp code vào router
-        (cb: CbError) => eachOfLimit(DATA.controller_list, 1, (n, i, next) => {
+        (cb: CbError) => eachOfLimit(DATA.controller_list, 20, (n, i, next) => {
             if (isArray(n.controller))
                 ROUTER.all(n.path, ...n.controller)
             else
