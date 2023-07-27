@@ -37,7 +37,7 @@ export const loadBootstrap = (proceed: Cb) => {
         .then(r => {
             console.log(green`✔ Bootstrap loading successfully`)
 
-            console.log(blue`\t⇨ ${r}`)
+            r.map(n => console.log(blue`\t⇨ ${n}`))
 
             proceed()
         })

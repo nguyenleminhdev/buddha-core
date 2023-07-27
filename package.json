@@ -1,6 +1,6 @@
 {
   "name": "buddha-core",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Core logic of buddha.ts",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -15,7 +15,7 @@
     "express"
   ],
   "scripts": {
-    "dev": "ts-node-dev test/index.ts",
+    "dev": "tsc --watch",
     "build": "rimraf ./build && tsc && copyfiles buddha.txt build",
     "prepare": "npm run build"
   },

@@ -68,7 +68,7 @@ const loadBootstrap = (proceed) => {
     })))
         .then(r => {
         console.log((0, chalk_1.green) `✔ Bootstrap loading successfully`);
-        console.log((0, chalk_1.blue) `\t⇨ ${r}`);
+        r.map(n => console.log((0, chalk_1.blue) `\t⇨ ${n}`));
         proceed();
     })
         .catch(e => proceed());
