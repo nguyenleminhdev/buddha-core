@@ -30,12 +30,13 @@ export const connect_mongodb = (
         }
     )
 
-    NEW_CONNECT.on('error', e => proceed(e.message || e))
+    NEW_CONNECT.on('error', e => {
+        try { proceed(e.message || e) } catch (error) { }
+    })
 
-    NEW_CONNECT.on('connected', () => proceed(
-        null,
-        NEW_CONNECT.useDb(config.name, { useCache: true })
-    ))
+    NEW_CONNECT.on('connected', () => {
+        try { proceed(null, NEW_CONNECT.useDb(config.name, { useCache: true })) } catch (e) { }
+    })
 }
 
 /**tạo model cho mongodb */

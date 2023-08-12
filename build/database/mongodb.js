@@ -19,8 +19,18 @@ proceed) => {
         connectTimeoutMS: 10000,
         socketTimeoutMS: 45000,
     });
-    NEW_CONNECT.on('error', e => proceed(e.message || e));
-    NEW_CONNECT.on('connected', () => proceed(null, NEW_CONNECT.useDb(config.name, { useCache: true })));
+    NEW_CONNECT.on('error', e => {
+        try {
+            proceed(e.message || e);
+        }
+        catch (error) { }
+    });
+    NEW_CONNECT.on('connected', () => {
+        try {
+            proceed(null, NEW_CONNECT.useDb(config.name, { useCache: true }));
+        }
+        catch (e) { }
+    });
 };
 exports.connect_mongodb = connect_mongodb;
 /**tạo model cho mongodb */
