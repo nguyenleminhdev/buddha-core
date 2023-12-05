@@ -48,7 +48,7 @@ export const load_default_redis_connect = (proceed: Cb) => {
 
                     add_log({ ...LOG, status: '❌' })
 
-                    next()
+                    try { next() } catch (e) {}
                 })
 
                 NEW_CONNECT.on('ready', () => {

@@ -36,7 +36,10 @@ const load_default_redis_connect = (proceed) => {
                         return;
                     error_flag = e;
                     (0, service_1.add_log)(Object.assign(Object.assign({}, LOG), { status: '❌' }));
-                    next();
+                    try {
+                        next();
+                    }
+                    catch (e) { }
                 });
                 NEW_CONNECT.on('ready', () => {
                     DATA[name] = NEW_CONNECT;
