@@ -4,7 +4,7 @@ import type { Cb } from '../interface'
 export const CatchAllServerUnknownError = (proceed: Cb) => {
     process.on('unhandledRejection', (e: any) => {
         // nếu là lỗi kết nối của mongo thì bỏ qua
-        if (e.stack.includes('MongooseServerSelectionError: connect ECONNREFUSED')) return
+        if (e?.stack?.includes('MongooseServerSelectionError: connect ECONNREFUSED')) return
 
         console.log('CATCH [unhandledRejection]::', e)
     })
