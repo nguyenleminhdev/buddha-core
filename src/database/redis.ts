@@ -26,7 +26,10 @@ export const load_default_redis_connect = (proceed: Cb) => {
                 if (e) return next()
 
                 /**đường dẫn đến redis */
-                const URI = `redis://${config.host}:${config.port}/${config.name}`
+                const URI = 
+                config?.username && config?.password ? 
+                `redis://${config.username}:${config.password}@${config.host}:${config.port}/${config.name}` :
+                `redis://${config.host}:${config.port}/${config.name}`
 
                 /**kết nối đến redis */
                 const NEW_CONNECT = createClient(URI)

@@ -1,8 +1,13 @@
 import type { NodeName } from '../server/database'
 import type { Mongodb, Redis, Elasticsearch } from '../database'
 
+export interface DbAuth {
+    username?: string
+    password?: string
+}
+
 /**cài đặt cho một kết nối đến mongo */
-export interface MongodbConfig extends NodeName {
+export interface MongodbConfig extends NodeName, DbAuth {
     /**tên miền,ip */
     host: string
     /**cổng */
@@ -12,7 +17,7 @@ export interface MongodbConfig extends NodeName {
 }
 
 /**cài đặt cho một kết nối redis */
-export interface RedisConfig extends NodeName {
+export interface RedisConfig extends NodeName, DbAuth {
     /**tên miền, ip */
     host: string
     /**cổng */
@@ -22,7 +27,7 @@ export interface RedisConfig extends NodeName {
 }
 
 /**cài đặt cho một kết nối ES */
-export interface ElasticsearchConfig extends NodeName {
+export interface ElasticsearchConfig extends NodeName, DbAuth {
     /**phương thức */
     protocol: 'http' | 'https'
     /**tên miền,ip */

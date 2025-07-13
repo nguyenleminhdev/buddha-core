@@ -19,14 +19,21 @@ export const connect_mongodb = (
     /**callback */
     proceed: Cb
 ) => {
+    const URL = 
+    config?.username && config?.password ? 
+    `mongodb://${config.username}:${config.password}@${config.host}:${config.port}` : 
+    `mongodb://${config.host}:${config.port}`
+
     /**kết nối đến mongodb */
     const NEW_CONNECT = createConnection(
-        `mongodb://${config.host}:${config.port}`,
+        URL,
         {
             autoIndex: true,
             serverSelectionTimeoutMS: 5000,
             connectTimeoutMS: 10000,
             socketTimeoutMS: 45000,
+            user: config?.username,
+            pass: config?.password
         }
     )
 
