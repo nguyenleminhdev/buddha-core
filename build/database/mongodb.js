@@ -12,12 +12,17 @@ const connect_mongodb = (
 config, 
 /**callback */
 proceed) => {
+    const URL = (config === null || config === void 0 ? void 0 : config.username) && (config === null || config === void 0 ? void 0 : config.password) ?
+        `mongodb://${config.username}:${config.password}@${config.host}:${config.port}` :
+        `mongodb://${config.host}:${config.port}`;
     /**kết nối đến mongodb */
-    const NEW_CONNECT = (0, mongoose_1.createConnection)(`mongodb://${config.host}:${config.port}`, {
+    const NEW_CONNECT = (0, mongoose_1.createConnection)(URL, {
         autoIndex: true,
         serverSelectionTimeoutMS: 5000,
         connectTimeoutMS: 10000,
         socketTimeoutMS: 45000,
+        user: config === null || config === void 0 ? void 0 : config.username,
+        pass: config === null || config === void 0 ? void 0 : config.password
     });
     NEW_CONNECT.on('error', e => {
         try {

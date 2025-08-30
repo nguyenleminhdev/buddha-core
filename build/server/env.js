@@ -41,7 +41,7 @@ function loadCurrentEnvConfig(proceed) {
         /**giá trị của mội trường hiện tại */
         const NODE_ENV = process.env.NODE_ENV || 'development';
         /**dữ liệu của môi trường hiện tại */
-        const ENV = yield (_a = `${$project_dirname}/config/env/${NODE_ENV}`, Promise.resolve().then(() => __importStar(require(_a))));
+        const ENV = yield (_a = `${$project_dirname}/config/env/${NODE_ENV}`, Promise.resolve().then(() => __importStar(require(_a)))).catch(e => { var _a; return _a = `${$project_dirname}/config/env`, Promise.resolve().then(() => __importStar(require(_a))); });
         // nạp dữ liệu môi trường vào biến toàn cục
         globalThis.$env = ENV.default;
         console.log((0, chalk_1.green) `✔ Env config loading successfully`);

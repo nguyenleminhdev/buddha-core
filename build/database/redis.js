@@ -20,7 +20,9 @@ const load_default_redis_connect = (proceed) => {
                 if (e)
                     return next();
                 /**đường dẫn đến redis */
-                const URI = `redis://${config.host}:${config.port}/${config.name}`;
+                const URI = (config === null || config === void 0 ? void 0 : config.username) && (config === null || config === void 0 ? void 0 : config.password) ?
+                    `redis://${config.username}:${config.password}@${config.host}:${config.port}/${config.name}` :
+                    `redis://${config.host}:${config.port}/${config.name}`;
                 /**kết nối đến redis */
                 const NEW_CONNECT = (0, redis_1.createClient)(URI);
                 /**gắn cờ nếu xảy ra lỗi */
