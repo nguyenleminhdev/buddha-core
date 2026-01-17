@@ -18,27 +18,29 @@ export const loadServer = (APP: Express, proceed: Cb) => {
     const PORT = process.env.PORT || $env?.app?.port || 1337
 
     // gán vào biến toàn cục
-    $server = createServer(APP)
-        .listen(PORT as number, HOST, () => {
-            add_log({
-                type: 'server',
-                name: 'static',
-                address: `http://${HOST}:${PORT}/*`,
-                status: '✅'
-            })
+    globalThis.$server = createServer(APP)
 
-            add_log({
-                type: 'server',
-                name: 'http',
-                address: `http://${HOST}:${PORT}/${$env?.app?.prefix}/*`,
-                status: '✅'
-            })
-
-            console.log(green`✔ Server static loading successfully`)
-
-            console.log(green`✔ Http server loading successfully`)
-
-            proceed()
+    // khởi chạy server
+    $server.listen(PORT as number, HOST, () => {
+        add_log({
+            type: 'server',
+            name: 'static',
+            address: `http://${HOST}:${PORT}/*`,
+            status: '✅'
         })
-        .on('error', proceed)
+
+        add_log({
+            type: 'server',
+            name: 'http',
+            address: `http://${HOST}:${PORT}/${$env?.app?.prefix}/*`,
+            status: '✅'
+        })
+
+        console.log(green`✔ Server static loading successfully`)
+
+        console.log(green`✔ Http server loading successfully`)
+
+        proceed()
+    })
+    .on('error', proceed)
 }
