@@ -15,7 +15,8 @@ const loadServer = (APP, proceed) => {
     const HOST = process.env.HOST || ((_a = $env === null || $env === void 0 ? void 0 : $env.app) === null || _a === void 0 ? void 0 : _a.host) || '0.0.0.0';
     /**port được khởi chạy */
     const PORT = process.env.PORT || ((_b = $env === null || $env === void 0 ? void 0 : $env.app) === null || _b === void 0 ? void 0 : _b.port) || 1337;
-    (0, http_1.createServer)(APP)
+    // gán vào biến toàn cục
+    $server = (0, http_1.createServer)(APP)
         .listen(PORT, HOST, () => {
         var _a;
         (0, service_1.add_log)({

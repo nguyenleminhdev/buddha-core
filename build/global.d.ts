@@ -2,6 +2,8 @@
  * - khai báo kiểu dữ liệu cho các biến toàn cục
  * - chỉnh sửa kiểu dữ liệu của thư viên
  */
+/// <reference types="node" />
+import { Server } from 'http';
 import type { LogItemInfo, Database, Lang } from './interface';
 import type { Queue } from './service';
 import type { Express } from 'express';
@@ -34,6 +36,8 @@ declare global {
     var $queue: {
         [index: string]: Queue;
     };
-    /**thực thể của server */
+    /**thực thể của app */
     var $app: Express;
+    /**thực thể của server */
+    var $server: Server;
 }

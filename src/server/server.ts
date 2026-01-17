@@ -17,7 +17,8 @@ export const loadServer = (APP: Express, proceed: Cb) => {
     /**port được khởi chạy */
     const PORT = process.env.PORT || $env?.app?.port || 1337
 
-    createServer(APP)
+    // gán vào biến toàn cục
+    $server = createServer(APP)
         .listen(PORT as number, HOST, () => {
             add_log({
                 type: 'server',
