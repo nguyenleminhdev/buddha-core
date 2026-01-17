@@ -11,7 +11,7 @@ const _1 = require("./");
  * khởi chạy hệ thống
  * @param project_dirname đường dẫn của thư mục dự án
  */
-const init = (project_dirname) => {
+const init = (project_dirname, next) => {
     // nạp đường dẫn server
     globalThis.$project_dirname = project_dirname;
     // khởi tạo đối tượng của server
@@ -33,7 +33,10 @@ const init = (project_dirname) => {
         (cb) => (0, _1.loadSocket)(cb),
         (cb) => (0, _1.loadServer)(APP, cb),
         (cb) => (0, _1.loadBuddha)(cb),
-    ], e => { if (e)
-        console.log('START SERVER ERROR::', e); });
+    ], e => {
+        if (e)
+            console.log('START SERVER ERROR::', e);
+        next(e);
+    });
 };
 exports.init = init;

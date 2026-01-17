@@ -62,8 +62,7 @@ const get_all_file_name_folder = (root_path, proceed) => {
             DATA.push({
                 full_path: CURRENT_PATH,
                 // xoá bỏ các dữ liệu thừa để lấy path
-                path: CURRENT_PATH
-                    .replace(root_path, '')
+                path: CURRENT_PATH.replace(root_path, '')
                     .replace('.ts', '')
                     .replace('.js', '')
                     .replace(/index/g, ''),
@@ -72,7 +71,7 @@ const get_all_file_name_folder = (root_path, proceed) => {
         });
     }, proceed);
     // bắt đầu chạy
-    recursive(root_path, e => e ? proceed(e) : proceed(null, DATA));
+    recursive(root_path, e => (e ? proceed(e) : proceed(null, DATA)));
 };
 /**nạp các middleware vào router */
 const load_middleware = (ROUTER, proceed) => {
@@ -80,7 +79,7 @@ const load_middleware = (ROUTER, proceed) => {
     const PATH = `${$project_dirname}/api/middleware`;
     const DATA = {
         config_middleware: {},
-        list_middleware: {}
+        list_middleware: {},
     };
     (0, async_1.waterfall)([
         // * đọc code của middleware
@@ -88,7 +87,7 @@ const load_middleware = (ROUTER, proceed) => {
             var _a;
             return {
                 name: (0, service_1.get_file_name)(n),
-                source: yield (_a = (0, path_1.join)(PATH, n), Promise.resolve().then(() => __importStar(require(_a))))
+                source: yield (_a = (0, path_1.join)(PATH, n), Promise.resolve().then(() => __importStar(require(_a)))),
             };
         }))).then(n => {
             DATA.list_middleware = (0, lodash_1.keyBy)(n, 'name');
@@ -107,34 +106,36 @@ const load_middleware = (ROUTER, proceed) => {
             console.log((0, chalk_1.green) `✔ Middleware loading successfully`);
             (0, async_1.eachOfLimit)(DATA.config_middleware, 20, (v, k, next) => {
                 /**code của middleware */
-                const LIST_HANDLE = v.map(n => (0, lodash_1.get)(DATA.list_middleware, [n, 'source', 'default'])).filter(n => n);
+                const LIST_HANDLE = v
+                    .map(n => (0, lodash_1.get)(DATA.list_middleware, [n, 'source', 'default']))
+                    .filter(n => n);
                 if (!LIST_HANDLE.length)
                     return next();
                 // thêm vào router
-                ROUTER.use((0, path_1.join)('/', k), ...LIST_HANDLE);
+                ROUTER.use(path_1.posix.join('/', k), ...LIST_HANDLE);
                 console.log((0, chalk_1.blue) `\t⇨ ${v.join(' >> ')} >> ${k}`);
                 next();
             }, cb);
-        }
+        },
     ], proceed);
 };
 /**xử lý code thành dạng chuẩn */
 const handle_controller = (path, source, proceed) => {
     const DATA = {
-        controller_list: []
+        controller_list: [],
     };
     (0, async_1.eachOfLimit)(source, 20, (controller, name, next) => {
         DATA.controller_list.push({
-            path: (0, path_1.join)(path, name.replace(/index/g, '')),
-            controller
+            path: path_1.posix.join(path, name.replace(/index/g, '')),
+            controller,
         });
         next();
-    }, e => e ? proceed(e) : proceed(null, DATA.controller_list));
+    }, e => (e ? proceed(e) : proceed(null, DATA.controller_list)));
 };
 /**xử lý code ban đầu để nạp vào router */
 const handle_controller_list = (input, proceed) => {
     const DATA = {
-        controller_list: []
+        controller_list: [],
     };
     (0, async_1.waterfall)([
         // * export const
@@ -151,7 +152,7 @@ const handle_controller_list = (input, proceed) => {
             DATA.controller_list = [...DATA.controller_list, ...r];
             cb();
         }),
-    ], e => e ? proceed(e) : proceed(null, DATA.controller_list));
+    ], e => (e ? proceed(e) : proceed(null, DATA.controller_list)));
 };
 /**nạp toàn bộ dữ liệu của controller vào làm api */
 const load_controller = (ROUTER, proceed) => {
@@ -202,7 +203,7 @@ const load_controller = (ROUTER, proceed) => {
             else
                 ROUTER.all(n.path, n.controller);
             next();
-        }, cb)
+        }, cb),
     ], proceed);
 };
 /**nạp toàn bộ các xử lý api vào router */
