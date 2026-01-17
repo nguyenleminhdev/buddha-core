@@ -16,6 +16,8 @@ const init = (project_dirname, next) => {
     globalThis.$project_dirname = project_dirname;
     // khởi tạo đối tượng của server
     const APP = (0, express_1.default)();
+    // gán vào biến toàn cục
+    globalThis.$app = APP;
     // xoá toàn bộ log trước đó
     console.clear();
     (0, async_1.waterfall)([

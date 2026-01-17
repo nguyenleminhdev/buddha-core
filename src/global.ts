@@ -5,6 +5,7 @@
 
 import type { LogItemInfo, Database, Lang } from './interface'
 import type { Queue } from './service'
+import type { Express } from 'express'
 
 declare global {
     // chỉnh sửa kiểu dữ liệu của thư viện express
@@ -40,4 +41,6 @@ declare global {
     var $queue: {
         [index: string]: Queue
     }
+    /**thực thể của server */
+    var $app: Express
 }

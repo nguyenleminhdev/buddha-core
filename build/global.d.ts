@@ -4,6 +4,7 @@
  */
 import type { LogItemInfo, Database, Lang } from './interface';
 import type { Queue } from './service';
+import type { Express } from 'express';
 declare global {
     namespace Express {
         interface Request {
@@ -33,4 +34,6 @@ declare global {
     var $queue: {
         [index: string]: Queue;
     };
+    /**thực thể của server */
+    var $app: Express;
 }

@@ -20,6 +20,9 @@ export const init = (project_dirname: string, next?: Cb) => {
     // khởi tạo đối tượng của server
     const APP = express()
 
+    // gán vào biến toàn cục
+    globalThis.$app = APP
+
     // xoá toàn bộ log trước đó
     console.clear()
 
