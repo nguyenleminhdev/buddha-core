@@ -36,7 +36,7 @@ const init = (project_dirname, next) => {
     ], e => {
         if (e)
             console.log('START SERVER ERROR::', e);
-        next(e);
+        next === null || next === void 0 ? void 0 : next(e);
     });
 };
 exports.init = init;

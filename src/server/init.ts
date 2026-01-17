@@ -13,7 +13,7 @@ import type { Cb, CbError } from '../interface'
  * khởi chạy hệ thống
  * @param project_dirname đường dẫn của thư mục dự án
  */
-export const init = (project_dirname: string, next: Cb) => {
+export const init = (project_dirname: string, next?: Cb) => {
     // nạp đường dẫn server
     globalThis.$project_dirname = project_dirname
 
@@ -41,6 +41,6 @@ export const init = (project_dirname: string, next: Cb) => {
     ], e => { 
         if (e) console.log('START SERVER ERROR::', e)
 
-        next(e)
+        next?.(e)
     })
 }
