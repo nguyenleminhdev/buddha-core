@@ -46,6 +46,11 @@ npm install buddha-core
 ## Usage
 For detailed usage instructions, you can refer to the Documentation (incomming).
 
+### Global middleware
+Each file in `helper/global_middleware/` of the project default-exports one Express middleware. They are mounted on the app in file-name order, **before** cors, body-parser, static and every route, so they wrap the whole request lifecycle (timing, API logging, catching body-parser errors). The folder is optional. A file that throws while loading is skipped and shown as ❌ in the startup table; the other middleware and the server still start.
+
+The default error handler stores the original error in `res.locals.error` before calling `res.err(message, code)`, and keeps the status of client errors thrown by libraries (`expose: true`, e.g. invalid JSON → 400, body too large → 413) instead of turning them into 500.
+
 ## Contributions
 We always welcome contributions from the community to improve and enhance Buddha.ts. If you encounter any issues or have ideas for new features, feel free to open an issue or submit your pull request.
 

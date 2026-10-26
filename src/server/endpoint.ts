@@ -14,15 +14,33 @@ export const loadDefaultEndpoint = (APP: Express,proceed: Cb) => {
         res.err('NOT_FOUND.API', 404, req.path)
     })
 
-    // trả về 500 khi server có lỗi hệ thống
+    // trả về lỗi khi server có lỗi hệ thống
     APP.use((
         (e, req, res, proceed) => {
-            console.log(500, e)
+            // đã trả về một phần thì không ghi đè được nữa, để express tự đóng kết nối
+            if (res.headersSent) return proceed(e)
 
-            res.err(e.message || e, 500)
+            // giữ lỗi gốc (kèm stack) cho middleware cấp app đọc lại (vd log api),
+            // vì res.err bên dưới chỉ nhận message
+            res.locals.error = e
+
+            /**
+             * lỗi 4xx mà thư viện chủ động trả cho client (body-parser: json sai
+             * định dạng, body quá lớn...) thì giữ đúng mã, còn lại là lỗi hệ thống
+             */
+            const CODE = e?.expose && e.status && e.status < 500 ? e.status : 500
+
+            if (CODE === 500) console.log(500, e)
+
+            res.err(e.message || e, CODE)
         }
     ) as (
-        err: Error,
+        err: Error & {
+            /**lỗi được phép trả nguyên message cho client (theo `http-errors`) */
+            expose?: boolean
+            /**mã http của lỗi (theo `http-errors`) */
+            status?: number
+        },
         req: Request,
         res: Response,
         proceed: NextFunction
